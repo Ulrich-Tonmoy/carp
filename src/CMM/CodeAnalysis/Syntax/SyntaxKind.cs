@@ -14,6 +14,9 @@
         OpenParenthesisToken,
         CloseParenthesisToken,
         IdentifierToken,
+        NotToken,
+        AndToken,
+        OrToken,
 
         //Keywords
         TrueKeyword,

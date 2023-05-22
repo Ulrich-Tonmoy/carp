@@ -8,7 +8,8 @@
             {
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 3;
+                case SyntaxKind.NotToken:
+                    return 5;
 
                 default:
                     return 0;
@@ -21,10 +22,15 @@
             {
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
-                    return 2;
+                    return 4;
 
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
+                    return 3;
+
+                case SyntaxKind.AndToken:
+                    return 2;
+                case SyntaxKind.OrToken:
                     return 1;
 
                 default:
