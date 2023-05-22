@@ -25,7 +25,7 @@ namespace CMM.CodeAnalysis.Binding
 
         private BoundExpression BindLiteralExpression(LiteralExpressionSyntax syntax)
         {
-            var value = syntax.LiteralToken.Value as int? ?? 0;
+            var value = syntax.Value ?? 0;
             return new BoundLiteralExpression(value);
         }
 
@@ -35,7 +35,7 @@ namespace CMM.CodeAnalysis.Binding
             var boundOperatorKind = BindUnaryOperatorKind(syntax.OperatorToken.Kind, boundOperand.Type);
             if (boundOperatorKind is null)
             {
-                _diagnostics.Add($"Unary operator '${syntax.OperatorToken.Text}' is not defined for type {boundOperand.Type}");
+                _diagnostics.Add($"Unary operator '{syntax.OperatorToken.Text}' is not defined for type {boundOperand.Type}");
                 return boundOperand;
             }
             return new BoundUnaryExpression(boundOperatorKind.Value, boundOperand);
@@ -48,7 +48,7 @@ namespace CMM.CodeAnalysis.Binding
             var boundOperatorKind = BindBinaryOperatorKind(syntax.OperatorToken.Kind, boundLeft.Type, boundRight.Type);
             if (boundOperatorKind is null)
             {
-                _diagnostics.Add($"Binary operator '${syntax.OperatorToken.Text}' is not defined for types {boundLeft.Type} and {boundRight.Type}");
+                _diagnostics.Add($"Binary operator '{syntax.OperatorToken.Text}' is not defined for types {boundLeft.Type} and {boundRight.Type}");
                 return boundLeft;
             }
             return new BoundBinaryExpression(boundLeft, boundOperatorKind.Value, boundRight);
