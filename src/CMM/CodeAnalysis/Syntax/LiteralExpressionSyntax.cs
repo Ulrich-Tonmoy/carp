@@ -1,4 +1,4 @@
-﻿namespace CMM.CodeAnalysis
+﻿namespace CMM.CodeAnalysis.Syntax
 {
     public sealed class LiteralExpressionSyntax : ExpressionSyntax
     {

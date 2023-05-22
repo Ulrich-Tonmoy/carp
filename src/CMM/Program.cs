@@ -1,4 +1,5 @@
 ﻿using CMM.CodeAnalysis;
+using CMM.CodeAnalysis.Syntax;
 
 namespace Minsk
 {

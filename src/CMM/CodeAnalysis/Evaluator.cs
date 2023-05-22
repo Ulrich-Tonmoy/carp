@@ -1,4 +1,6 @@
-﻿namespace CMM.CodeAnalysis
+﻿using CMM.CodeAnalysis.Syntax;
+
+namespace CMM.CodeAnalysis
 {
     public sealed class Evaluator
     {
@@ -6,7 +8,7 @@
 
         public Evaluator(ExpressionSyntax root)
         {
-            this._root = root;
+            _root = root;
         }
 
         public int Evaluate()
