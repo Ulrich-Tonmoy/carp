@@ -1,7 +1,8 @@
 ﻿using CMM.CodeAnalysis;
+using CMM.CodeAnalysis.Binding;
 using CMM.CodeAnalysis.Syntax;
 
-namespace Minsk
+namespace CMM
 {
     internal static class Program
     {
@@ -29,6 +30,9 @@ namespace Minsk
                 }
 
                 var syntaxTree = SyntaxTree.Parse(line);
+                var binder = new Binder();
+                var boundExpression = binder.BindExpression(syntaxTree.Root);
+                var diagnostics = syntaxTree.Diagnostics.Concat(binder.Diagnostics).ToArray();
 
                 if (showTree)
                 {
@@ -37,10 +41,10 @@ namespace Minsk
                     Console.ResetColor();
                 }
 
-                if (!syntaxTree.Diagnostics.Any())
+                if (!diagnostics.Any())
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    var e = new Evaluator(syntaxTree.Root);
+                    var e = new Evaluator(boundExpression);
                     var result = e.Evaluate();
                     Console.WriteLine(result);
                     Console.ResetColor();
@@ -49,7 +53,7 @@ namespace Minsk
                 {
                     Console.ForegroundColor = ConsoleColor.DarkRed;
 
-                    foreach (var diagnostic in syntaxTree.Diagnostics)
+                    foreach (var diagnostic in diagnostics)
                         Console.WriteLine(diagnostic);
 
                     Console.ResetColor();
