@@ -11,12 +11,14 @@
         MinusToken,
         StarToken,
         SlashToken,
-        OpenParenthesisToken,
-        CloseParenthesisToken,
-        IdentifierToken,
         NotToken,
         AndToken,
         OrToken,
+        EqualityToken,
+        NotEqualToken,
+        OpenParenthesisToken,
+        CloseParenthesisToken,
+        IdentifierToken,
 
         //Keywords
         TrueKeyword,

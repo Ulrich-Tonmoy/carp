@@ -89,8 +89,6 @@
                     return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
                 case ')':
                     return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
-                case '!':
-                    return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
                 case '&':
                     if (Lookahead == '&')
                         return new SyntaxToken(SyntaxKind.AndToken, _position += 2, "&&", null);
@@ -99,6 +97,15 @@
                     if (Lookahead == '|')
                         return new SyntaxToken(SyntaxKind.OrToken, _position += 2, "||", null);
                     break;
+                case '=':
+                    if (Lookahead == '=')
+                        return new SyntaxToken(SyntaxKind.EqualityToken, _position += 2, "==", null);
+                    break;
+                case '!':
+                    if (Lookahead == '=')
+                        return new SyntaxToken(SyntaxKind.NotEqualToken, _position += 2, "!=", null);
+                    else
+                        return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
             }
 
             _diagnostics.Add($"ERROR: bad character input: '{Current}'");

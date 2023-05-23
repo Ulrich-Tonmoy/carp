@@ -9,7 +9,7 @@
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
                 case SyntaxKind.NotToken:
-                    return 5;
+                    return 6;
 
                 default:
                     return 0;
@@ -22,10 +22,14 @@
             {
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
-                    return 4;
+                    return 5;
 
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
+                    return 4;
+
+                case SyntaxKind.EqualityToken:
+                case SyntaxKind.NotEqualToken:
                     return 3;
 
                 case SyntaxKind.AndToken:
