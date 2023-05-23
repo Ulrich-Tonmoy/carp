@@ -1,6 +1,6 @@
-# 1
+# Version 1
 
-[Next](2.md)
+[Next](version-2.md)
 
 ## Completed items
 
@@ -48,11 +48,10 @@ The problem with having incorrect trees is that you interpret results
 incorrectly. For instance, when walking the first tree one would compute the
 (correct) result `7` while the latter one would compute `9`.
 
-In our parser (which is a handwritten [recursive descent parser][rdp]) we
-achieved this by [structuring our method calls accordingly][parsing].
+In our parser (which is a handwritten [recursive descent parser][rdp]) I
+achieved this by structuring our method calls accordingly.
 
 [rdp]: https://en.wikipedia.org/wiki/Recursive_descent_parser
-[parsing]: https://github.com/terrajobst/minsk/blob/c6812a81e81611c13ed3a1b1a8b5e802507c95ac/mc/CodeAnalysis/Parser.cs#L74-L102
 
 ### Fabricating tokens
 
