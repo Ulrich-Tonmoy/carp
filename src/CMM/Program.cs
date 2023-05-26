@@ -8,6 +8,7 @@ namespace CMM
         private static void Main()
         {
             var showTree = false;
+            var variables = new Dictionary<VariableSymbol, object>();
 
             while (true)
             {
@@ -30,7 +31,7 @@ namespace CMM
 
                 var syntaxTree = SyntaxTree.Parse(line);
                 var compilation = new Compilation(syntaxTree);
-                var result = compilation.Evaluate();
+                var result = compilation.Evaluate(variables);
                 var diagnostics = result.Diagnostics;
 
                 if (showTree)

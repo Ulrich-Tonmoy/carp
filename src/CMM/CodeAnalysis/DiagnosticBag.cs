@@ -40,15 +40,21 @@ namespace CMM.CodeAnalysis
             Report(span, message);
         }
 
-        internal void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, Type operandType)
+        public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, Type operandType)
         {
-            var message = $"Unary operator '{operatorText}' is not defined for type {operandType}";
+            var message = $"Unary operator '{operatorText}' is not defined for type {operandType}.";
             Report(span, message);
         }
 
-        internal void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, Type boundLeftType, Type boundRightType)
+        public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, Type boundLeftType, Type boundRightType)
         {
-            var message = $"Binary operator '{operatorText}' is not defined for types {boundLeftType} and {boundRightType}";
+            var message = $"Binary operator '{operatorText}' is not defined for types {boundLeftType} and {boundRightType}.";
+            Report(span, message);
+        }
+
+        public void ReportUndefinedName(TextSpan span, string name)
+        {
+            var message = $"Variable '{name}' doesn't exist.";
             Report(span, message);
         }
     }

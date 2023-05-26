@@ -106,6 +106,11 @@
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.EqualityToken, start, "==", null);
                     }
+                    else
+                    {
+                        _position++;
+                        return new SyntaxToken(SyntaxKind.EqualToken, start, "=", null);
+                    }
                     break;
                 case '!':
                     if (Lookahead == '=')

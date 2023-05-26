@@ -19,6 +19,7 @@
         OpenParenthesisToken,
         CloseParenthesisToken,
         IdentifierToken,
+        EqualToken,
 
         //Keywords
         TrueKeyword,
@@ -29,5 +30,7 @@
         UnaryExpression,
         BinaryExpression,
         ParenthesizedExpression,
+        NameExpression,
+        AssignmentExpression,
     }
 }
