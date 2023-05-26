@@ -35,9 +35,10 @@
             if (_position >= _text.Length)
                 return new SyntaxToken(SyntaxKind.EndOfFileToken, _position, "\0", null);
 
+            var start = _position;
+
             if (char.IsDigit(Current))
             {
-                var start = _position;
 
                 while (char.IsDigit(Current))
                     Next();
@@ -52,8 +53,6 @@
 
             if (char.IsWhiteSpace(Current))
             {
-                var start = _position;
-
                 while (char.IsWhiteSpace(Current))
                     Next();
 
@@ -64,8 +63,6 @@
 
             if (char.IsLetter(Current))
             {
-                var start = _position;
-
                 while (char.IsLetter(Current))
                     Next();
 
@@ -91,21 +88,36 @@
                     return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
                 case '&':
                     if (Lookahead == '&')
-                        return new SyntaxToken(SyntaxKind.AndToken, _position += 2, "&&", null);
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.AndToken, start, "&&", null);
+                    }
                     break;
                 case '|':
                     if (Lookahead == '|')
-                        return new SyntaxToken(SyntaxKind.OrToken, _position += 2, "||", null);
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.OrToken, start, "||", null);
+                    }
                     break;
                 case '=':
                     if (Lookahead == '=')
-                        return new SyntaxToken(SyntaxKind.EqualityToken, _position += 2, "==", null);
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.EqualityToken, start, "==", null);
+                    }
                     break;
                 case '!':
                     if (Lookahead == '=')
-                        return new SyntaxToken(SyntaxKind.NotEqualToken, _position += 2, "!=", null);
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.NotEqualToken, start, "!=", null);
+                    }
                     else
-                        return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
+                    {
+                        _position++;
+                        return new SyntaxToken(SyntaxKind.NotToken, start, "!", null);
+                    }
             }
 
             _diagnostics.ReportBadCharacter(_position, Current);

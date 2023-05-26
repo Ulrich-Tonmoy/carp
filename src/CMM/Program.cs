@@ -50,6 +50,7 @@ namespace CMM
                 {
                     foreach (var diagnostic in diagnostics)
                     {
+                        Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(diagnostic);
                         Console.ResetColor();
@@ -69,6 +70,7 @@ namespace CMM
 
                         Console.WriteLine();
                     }
+                    Console.WriteLine();
                 }
             }
         }
