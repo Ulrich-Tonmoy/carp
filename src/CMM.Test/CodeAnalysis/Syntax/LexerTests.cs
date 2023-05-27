@@ -2,7 +2,7 @@
 
 namespace CMM.Test.CodeAnalysis.Syntax
 {
-    public class LexerTest
+    public class LexerTests
     {
         [Theory]
         [MemberData(nameof(GetTokensData))]
