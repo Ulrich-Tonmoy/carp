@@ -1,6 +1,6 @@
-# Version 1
+# Docs 1
 
-[Next](version-2.md)
+[Next](docs-2.md)
 
 ## Completed items
 

@@ -1,7 +1,7 @@
-# Version 2
+# Docs 2
 
-[Previous](version-1.md) |
-[Next](version-3.md)
+[Previous](docs-1.md) |
+[Next](docs-3.md)
 
 ## Completed items
 
