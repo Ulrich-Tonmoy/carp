@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMM", "CMM\CMM.csproj", "{46D7DD0C-1B97-4CAC-B73A-0F19ABD9CDCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMM", "CMM\CMM.csproj", "{46D7DD0C-1B97-4CAC-B73A-0F19ABD9CDCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMM.Test", "CMM.Test\CMM.Test.csproj", "{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{46D7DD0C-1B97-4CAC-B73A-0F19ABD9CDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D7DD0C-1B97-4CAC-B73A-0F19ABD9CDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D7DD0C-1B97-4CAC-B73A-0F19ABD9CDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
