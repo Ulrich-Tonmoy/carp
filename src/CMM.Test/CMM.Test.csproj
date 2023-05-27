@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMM\CMM.csproj" />
+    <ProjectReference Include="..\CMM\msc.csproj" />
   </ItemGroup>
 
 </Project>

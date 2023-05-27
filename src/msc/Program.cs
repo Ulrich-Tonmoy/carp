@@ -1,7 +1,7 @@
 ﻿using CMM.CodeAnalysis;
 using CMM.CodeAnalysis.Syntax;
 
-namespace CMM
+namespace msc
 {
     internal static class Program
     {
