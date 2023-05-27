@@ -1,6 +1,6 @@
 ﻿namespace CMM.CodeAnalysis.Syntax
 {
-    internal static class SyntaxFacts
+    public static class SyntaxFacts
     {
         public static int GetUnaryOperatorPrecedence(this SyntaxKind kind)
         {
@@ -52,6 +52,43 @@
                     return SyntaxKind.FalseKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
+            }
+        }
+
+        public static string GetText(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.PlusToken:
+                    return "+";
+                case SyntaxKind.MinusToken:
+                    return "-";
+                case SyntaxKind.StarToken:
+                    return "*";
+                case SyntaxKind.SlashToken:
+                    return "/";
+                case SyntaxKind.NotToken:
+                    return "!";
+                case SyntaxKind.EqualToken:
+                    return "=";
+                case SyntaxKind.AndToken:
+                    return "&&";
+                case SyntaxKind.OrToken:
+                    return "||";
+                case SyntaxKind.EqualityToken:
+                    return "==";
+                case SyntaxKind.NotEqualToken:
+                    return "!=";
+                case SyntaxKind.OpenParenthesisToken:
+                    return "(";
+                case SyntaxKind.CloseParenthesisToken:
+                    return ")";
+                case SyntaxKind.FalseKeyword:
+                    return "false";
+                case SyntaxKind.TrueKeyword:
+                    return "true";
+                default:
+                    return null;
             }
         }
     }
