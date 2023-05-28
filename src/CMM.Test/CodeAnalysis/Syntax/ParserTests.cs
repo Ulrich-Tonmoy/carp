@@ -8,8 +8,8 @@ namespace CMM.Test.CodeAnalysis.Syntax
         [MemberData(nameof(GetBinaryOperatorPairsData))]
         public void Parser_BinaryExpression_HonorsPrecedences(SyntaxKind op1, SyntaxKind op2)
         {
-            var op1Precendence = SyntaxFacts.GetUnaryOperatorPrecedence(op1);
-            var op2Precendence = SyntaxFacts.GetUnaryOperatorPrecedence(op2);
+            var op1Precendence = SyntaxFacts.GetBinaryOperatorPrecedence(op1);
+            var op2Precendence = SyntaxFacts.GetBinaryOperatorPrecedence(op2);
             var op1Text = SyntaxFacts.GetText(op1);
             var op2Text = SyntaxFacts.GetText(op2);
             var text = $"a {op1Text} b {op2Text} c";
