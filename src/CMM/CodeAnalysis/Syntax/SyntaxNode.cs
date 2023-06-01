@@ -35,5 +35,43 @@ namespace CMM.CodeAnalysis.Syntax
                 }
             }
         }
+
+        public void WriteTo(TextWriter writer)
+        {
+            PrettyPrint(writer, this);
+        }
+
+        private static void PrettyPrint(TextWriter writer, SyntaxNode node, string indent = "", bool isFirst = true, bool isLast = true)
+        {
+            var marker = isFirst ? "" : isLast ? "└──" : "├──";
+
+            writer.Write(indent);
+            writer.Write(marker);
+            writer.Write(node.Kind);
+
+            if (node is SyntaxToken t && t.Value != null)
+            {
+                writer.Write(" ");
+                writer.Write(t.Value);
+            }
+
+            writer.WriteLine();
+
+            indent += isFirst ? "" : isLast ? "   " : "│  ";
+
+            var lastChild = node.GetChildren().LastOrDefault();
+
+            foreach (var child in node.GetChildren())
+                PrettyPrint(writer, child, indent, false, child == lastChild);
+        }
+
+        public override string ToString()
+        {
+            using (var writer = new StringWriter())
+            {
+                WriteTo(writer);
+                return writer.ToString();
+            }
+        }
     }
 }

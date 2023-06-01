@@ -37,7 +37,7 @@ namespace msc
                 if (showTree)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    PrettyPrint(syntaxTree.Root);
+                    syntaxTree.Root.WriteTo(Console.Out);
                     Console.ResetColor();
                 }
 
@@ -74,30 +74,6 @@ namespace msc
                     Console.WriteLine();
                 }
             }
-        }
-
-        static void PrettyPrint(SyntaxNode node, string indent = "", bool isFirst = true, bool isLast = true)
-        {
-            var marker = isFirst ? "" : isLast ? "└──" : "├──";
-
-            Console.Write(indent);
-            Console.Write(marker);
-            Console.Write(node.Kind);
-
-            if (node is SyntaxToken t && t.Value != null)
-            {
-                Console.Write(" ");
-                Console.Write(t.Value);
-            }
-
-            Console.WriteLine();
-
-            indent += isFirst ? "" : isLast ? "   " : "│  ";
-
-            var lastChild = node.GetChildren().LastOrDefault();
-
-            foreach (var child in node.GetChildren())
-                PrettyPrint(child, indent, false, child == lastChild);
         }
     }
 }
