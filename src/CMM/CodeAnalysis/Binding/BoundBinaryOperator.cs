@@ -7,17 +7,17 @@ namespace CMM.CodeAnalysis.Binding
         public SyntaxKind SyntaxKind { get; }
         public BoundBinaryOperatorKind Kind { get; }
         public Type LeftType { get; }
-        public Type RighttType { get; }
+        public Type RightType { get; }
         public Type Type { get; }
 
         private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type type) : this(syntaxKind, kind, type, type, type) { }
         private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type operandType, Type resultType) : this(syntaxKind, kind, operandType, operandType, resultType) { }
-        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type leftType, Type righttType, Type resultType)
+        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type leftType, Type rightType, Type resultType)
         {
             SyntaxKind = syntaxKind;
             Kind = kind;
             LeftType = leftType;
-            RighttType = righttType;
+            RightType = rightType;
             Type = resultType;
         }
 
@@ -40,7 +40,7 @@ namespace CMM.CodeAnalysis.Binding
         {
             foreach (var op in _operators)
             {
-                if (op.SyntaxKind == syntaxKind && op.LeftType == leftType && op.RighttType == rightType)
+                if (op.SyntaxKind == syntaxKind && op.LeftType == leftType && op.RightType == rightType)
                 {
                     return op;
                 }
