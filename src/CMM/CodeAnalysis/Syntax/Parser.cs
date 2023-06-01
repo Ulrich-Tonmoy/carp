@@ -1,15 +1,16 @@
-﻿using System.Collections.Immutable;
+﻿using CMM.CodeAnalysis.Text;
+using System.Collections.Immutable;
 
 namespace CMM.CodeAnalysis.Syntax
 {
     internal sealed class Parser
     {
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly SourceText _text;
         private readonly ImmutableArray<SyntaxToken> _tokens;
-
         private int _position;
 
-        public Parser(string text)
+        public Parser(SourceText text)
         {
             var tokens = new List<SyntaxToken>();
 
@@ -28,6 +29,7 @@ namespace CMM.CodeAnalysis.Syntax
 
             _tokens = tokens.ToImmutableArray();
             _diagnostics.AddRange(lexer.Diagnostics);
+            _text = text;
         }
 
         public DiagnosticBag Diagnostics => _diagnostics;
@@ -42,6 +44,7 @@ namespace CMM.CodeAnalysis.Syntax
         }
 
         private SyntaxToken Current => Peek(0);
+
 
         private SyntaxToken NextToken()
         {
@@ -63,7 +66,7 @@ namespace CMM.CodeAnalysis.Syntax
         {
             var expresion = ParseExpression();
             var endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
-            return new SyntaxTree(_diagnostics.ToImmutableArray(), expresion, endOfFileToken);
+            return new SyntaxTree(_text, _diagnostics.ToImmutableArray(), expresion, endOfFileToken);
         }
 
         private ExpressionSyntax ParseExpression()

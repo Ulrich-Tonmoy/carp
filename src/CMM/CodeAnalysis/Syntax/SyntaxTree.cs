@@ -1,15 +1,18 @@
-﻿using System.Collections.Immutable;
+﻿using CMM.CodeAnalysis.Text;
+using System.Collections.Immutable;
 
 namespace CMM.CodeAnalysis.Syntax
 {
     public sealed class SyntaxTree
     {
+        public SourceText Text { get; }
         public ImmutableArray<Diagnostic> Diagnostics { get; }
         public ExpressionSyntax Root { get; }
         public SyntaxToken EndOfFileToken { get; }
 
-        public SyntaxTree(ImmutableArray<Diagnostic> diagnostics, ExpressionSyntax root, SyntaxToken endOfFileToken)
+        public SyntaxTree(SourceText text, ImmutableArray<Diagnostic> diagnostics, ExpressionSyntax root, SyntaxToken endOfFileToken)
         {
+            Text = text;
             Diagnostics = diagnostics;
             Root = root;
             EndOfFileToken = endOfFileToken;
@@ -17,11 +20,23 @@ namespace CMM.CodeAnalysis.Syntax
 
         public static SyntaxTree Parse(string text)
         {
+            var sourceText = SourceText.From(text);
+            return Parse(sourceText);
+        }
+
+        public static SyntaxTree Parse(SourceText text)
+        {
             var parser = new Parser(text);
             return parser.Parse();
         }
 
         public static IEnumerable<SyntaxToken> ParseTokens(string text)
+        {
+            var sourceText = SourceText.From(text);
+            return ParseTokens(sourceText);
+        }
+
+        public static IEnumerable<SyntaxToken> ParseTokens(SourceText text)
         {
             var lexer = new Lexer(text);
             while (true)
