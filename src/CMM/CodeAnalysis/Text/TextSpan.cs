@@ -1,4 +1,4 @@
-﻿namespace CMM.CodeAnalysis
+﻿namespace CMM.CodeAnalysis.Text
 {
     public struct TextSpan
     {

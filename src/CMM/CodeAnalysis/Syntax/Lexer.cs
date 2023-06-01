@@ -1,4 +1,6 @@
-﻿namespace CMM.CodeAnalysis.Syntax
+﻿using CMM.CodeAnalysis.Text;
+
+namespace CMM.CodeAnalysis.Syntax
 {
     internal sealed class Lexer
     {

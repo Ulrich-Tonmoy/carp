@@ -1,4 +1,5 @@
 ﻿using CMM.CodeAnalysis.Syntax;
+using CMM.CodeAnalysis.Text;
 using System.Collections;
 
 namespace CMM.CodeAnalysis

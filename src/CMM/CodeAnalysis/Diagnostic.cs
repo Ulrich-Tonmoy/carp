@@ -1,4 +1,6 @@
-﻿namespace CMM.CodeAnalysis
+﻿using CMM.CodeAnalysis.Text;
+
+namespace CMM.CodeAnalysis
 {
     public sealed class Diagnostic
     {
