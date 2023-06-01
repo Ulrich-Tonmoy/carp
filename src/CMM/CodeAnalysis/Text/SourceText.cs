@@ -45,7 +45,7 @@ namespace CMM.CodeAnalysis.Text
             {
                 var lineBreakWidth = GetLineBreakWidth(text, position);
                 if (lineBreakWidth == 0)
-                    lineStart++;
+                    position++;
                 else
                 {
                     AddLine(result, sourceText, position, lineStart, lineBreakWidth);
