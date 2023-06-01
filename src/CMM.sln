@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "msc", "msc\msc.csproj", "{4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMM.Test", "CMM.Test\CMM.Test.csproj", "{F16CCE18-A4F9-4711-941D-0BA9A54CB52E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMM", "CMM\CMM.csproj", "{216F6626-914B-4B1F-87FC-F59C5141D759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMM", "CMM\CMM.csproj", "{216F6626-914B-4B1F-87FC-F59C5141D759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

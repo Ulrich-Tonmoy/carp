@@ -2,8 +2,8 @@
 {
     internal sealed class Lexer
     {
-        private readonly string _text;
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly string _text;
 
         private int _position;
 
