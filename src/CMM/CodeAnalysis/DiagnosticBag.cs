@@ -58,5 +58,11 @@ namespace CMM.CodeAnalysis
             var message = $"Variable '{name}' doesn't exist.";
             Report(span, message);
         }
+
+        internal void ReportCannotConvert(TextSpan span, Type fromType, Type toType)
+        {
+            var message = $"Cannot convert type '{fromType}' to '{toType}'.";
+            Report(span, message);
+        }
     }
 }

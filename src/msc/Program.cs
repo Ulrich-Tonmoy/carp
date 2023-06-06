@@ -12,6 +12,7 @@ namespace msc
             var showTree = false;
             var variables = new Dictionary<VariableSymbol, object>();
             var textBuilder = new StringBuilder();
+            Compilation previous = null;
 
             while (true)
             {
@@ -42,6 +43,11 @@ namespace msc
                         Console.Clear();
                         continue;
                     }
+                    else if (input == "#reset")
+                    {
+                        previous = null;
+                        continue;
+                    }
                 }
 
                 textBuilder.AppendLine(input);
@@ -52,9 +58,8 @@ namespace msc
                 if (!isBlank && syntaxTree.Diagnostics.Any())
                     continue;
 
-                var compilation = new Compilation(syntaxTree);
+                var compilation = previous == null ? new Compilation(syntaxTree) : previous.ContinueWith(syntaxTree);
                 var result = compilation.Evaluate(variables);
-                var diagnostics = result.Diagnostics;
 
                 if (showTree)
                 {
@@ -63,15 +68,17 @@ namespace msc
                     Console.ResetColor();
                 }
 
-                if (!diagnostics.Any())
+                if (!result.Diagnostics.Any())
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine(result.Value);
                     Console.ResetColor();
+
+                    previous = compilation;
                 }
                 else
                 {
-                    foreach (var diagnostic in diagnostics)
+                    foreach (var diagnostic in result.Diagnostics)
                     {
                         var lineIndex = syntaxTree.Text.GetLineIndex(diagnostic.Span.Start);
                         var line = syntaxTree.Text.Lines[lineIndex];
