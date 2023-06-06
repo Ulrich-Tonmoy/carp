@@ -15,10 +15,14 @@ namespace msc
 
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 if (textBuilder.Length == 0)
                     Console.Write(">>> ");
                 else
-                    Console.Write("|   ");
+                    Console.Write("·   ");
+
+                Console.ResetColor();
 
                 var input = Console.ReadLine();
                 var isBlank = string.IsNullOrWhiteSpace(input);
@@ -61,7 +65,7 @@ namespace msc
 
                 if (!diagnostics.Any())
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine(result.Value);
                     Console.ResetColor();
                 }

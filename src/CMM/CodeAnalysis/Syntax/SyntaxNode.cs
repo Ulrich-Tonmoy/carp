@@ -44,10 +44,19 @@ namespace CMM.CodeAnalysis.Syntax
 
         private static void PrettyPrint(TextWriter writer, SyntaxNode node, string indent = "", bool isFirst = true, bool isLast = true)
         {
+            var isToConsole = writer == Console.Out;
             var marker = isFirst ? "" : isLast ? "└──" : "├──";
 
             writer.Write(indent);
-            writer.Write(marker);
+
+            if (isToConsole)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                writer.Write(marker);
+                Console.ResetColor();
+
+                Console.ForegroundColor = node is SyntaxToken ? ConsoleColor.Blue : ConsoleColor.Cyan;
+            }
             writer.Write(node.Kind);
 
             if (node is SyntaxToken t && t.Value != null)
@@ -55,6 +64,9 @@ namespace CMM.CodeAnalysis.Syntax
                 writer.Write(" ");
                 writer.Write(t.Value);
             }
+
+            if (isToConsole)
+                Console.ResetColor();
 
             writer.WriteLine();
 
