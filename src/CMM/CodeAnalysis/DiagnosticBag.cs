@@ -59,9 +59,21 @@ namespace CMM.CodeAnalysis
             Report(span, message);
         }
 
-        internal void ReportCannotConvert(TextSpan span, Type fromType, Type toType)
+        public void ReportCannotConvert(TextSpan span, Type fromType, Type toType)
         {
             var message = $"Cannot convert type '{fromType}' to '{toType}'.";
+            Report(span, message);
+        }
+
+        public void ReportVariableAlreadyDeclared(TextSpan span, string name)
+        {
+            var message = $"Variable '{name}' is already declared.";
+            Report(span, message);
+        }
+
+        public void ReportCannotAssign(TextSpan span, string name)
+        {
+            var message = $"Variable '{name}' is readonly and cannot be reassigned.";
             Report(span, message);
         }
     }
