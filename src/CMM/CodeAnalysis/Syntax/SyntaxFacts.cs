@@ -70,6 +70,10 @@
         {
             switch (text)
             {
+                case "else":
+                    return SyntaxKind.ElseKeyword;
+                case "if":
+                    return SyntaxKind.IfKeyword;
                 case "true":
                     return SyntaxKind.TrueKeyword;
                 case "false":
@@ -124,6 +128,10 @@
                     return "{";
                 case SyntaxKind.CloseBraceToken:
                     return "}";
+                case SyntaxKind.ElseClause:
+                    return "else";
+                case SyntaxKind.IfKeyword:
+                    return "if";
                 case SyntaxKind.FalseKeyword:
                     return "false";
                 case SyntaxKind.TrueKeyword:

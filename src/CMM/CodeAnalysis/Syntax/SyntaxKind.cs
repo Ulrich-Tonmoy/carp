@@ -28,6 +28,8 @@
         GreaterThanOrEqualToken,
 
         //Keywords
+        IfKeyword,
+        ElseKeyword,
         TrueKeyword,
         FalseKeyword,
         ConstKeyword,
@@ -35,11 +37,13 @@
 
         // Nodes
         CompilationUnit,
+        ElseClause,
 
         // Statements
         BlockStatement,
         VariableDeclaration,
         ExpressionStatement,
+        IfStatement,
 
         // Expressions
         LiteralExpression,
