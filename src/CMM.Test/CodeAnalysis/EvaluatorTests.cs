@@ -47,12 +47,12 @@ namespace CMM.Test.CodeAnalysis
         {
             var text = @"
                 {
-                    var x = 10            
+                    let x = 10            
                     var y = 20
                     {
                         var x = 10   
                     }
-                    var [x] = 5
+                    let [x] = 5
                 }
             ";
 
