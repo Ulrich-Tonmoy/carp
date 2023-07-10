@@ -29,6 +29,10 @@ namespace CMM.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.SlashToken,BoundBinaryOperatorKind.Division,typeof(int)),
             new BoundBinaryOperator(SyntaxKind.EqualityToken,BoundBinaryOperatorKind.Equality,typeof(int),typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.NotEqualToken,BoundBinaryOperatorKind.NotEquals,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.LessThanToken,BoundBinaryOperatorKind.Less,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.LessThanOrEqualToken,BoundBinaryOperatorKind.LessOrEqual,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.GreaterThanToken,BoundBinaryOperatorKind.Greater,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.GreaterThanOrEqualToken,BoundBinaryOperatorKind.GreaterOrEqual,typeof(int),typeof(bool)),
 
             new BoundBinaryOperator(SyntaxKind.AndToken,BoundBinaryOperatorKind.LogicalAnd,typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.OrToken,BoundBinaryOperatorKind.LogicalOr,typeof(bool)),

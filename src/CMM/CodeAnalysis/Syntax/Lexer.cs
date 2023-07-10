@@ -109,6 +109,26 @@ namespace CMM.CodeAnalysis.Syntax
                         _position++;
                     }
                     break;
+                case '<':
+                    _position++;
+                    if (Current != '=')
+                        _kind = SyntaxKind.LessThanToken;
+                    else
+                    {
+                        _kind = SyntaxKind.LessThanOrEqualToken;
+                        _position++;
+                    }
+                    break;
+                case '>':
+                    _position++;
+                    if (Current != '=')
+                        _kind = SyntaxKind.GreaterThanToken;
+                    else
+                    {
+                        _kind = SyntaxKind.GreaterThanOrEqualToken;
+                        _position++;
+                    }
+                    break;
                 case '0':
                 case '1':
                 case '2':

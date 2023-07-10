@@ -50,6 +50,10 @@
 
                 case SyntaxKind.EqualityToken:
                 case SyntaxKind.NotEqualToken:
+                case SyntaxKind.LessThanToken:
+                case SyntaxKind.LessThanOrEqualToken:
+                case SyntaxKind.GreaterThanToken:
+                case SyntaxKind.GreaterThanOrEqualToken:
                     return 3;
 
                 case SyntaxKind.AndToken:
@@ -95,6 +99,14 @@
                     return "!";
                 case SyntaxKind.EqualToken:
                     return "=";
+                case SyntaxKind.LessThanToken:
+                    return "<";
+                case SyntaxKind.LessThanOrEqualToken:
+                    return "<=";
+                case SyntaxKind.GreaterThanToken:
+                    return ">";
+                case SyntaxKind.GreaterThanOrEqualToken:
+                    return ">=";
                 case SyntaxKind.AndToken:
                     return "&&";
                 case SyntaxKind.OrToken:
