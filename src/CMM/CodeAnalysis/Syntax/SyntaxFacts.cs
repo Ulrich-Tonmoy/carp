@@ -77,6 +77,7 @@
                 case "const":
                     return SyntaxKind.ConstKeyword;
                 case "var":
+                case "let":
                     return SyntaxKind.VarKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
