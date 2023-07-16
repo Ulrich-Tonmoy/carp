@@ -5,7 +5,7 @@
         public BoundExpression Condition { get; }
         public BoundStatement Body { get; }
 
-        public override BoundNodeKind Kind => BoundNodeKind.WhileStatment;
+        public override BoundNodeKind Kind => BoundNodeKind.WhileStatement;
 
         public BoundWhileStatement(BoundExpression condition, BoundStatement body)
         {

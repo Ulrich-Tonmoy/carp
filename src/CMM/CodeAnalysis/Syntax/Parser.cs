@@ -82,6 +82,8 @@ namespace CMM.CodeAnalysis.Syntax
                     return ParseVariableDeclaration(SyntaxKind.LetKeyword);
                 case SyntaxKind.IfKeyword:
                     return ParseIfStatement();
+                case SyntaxKind.ForKeyword:
+                    return ParseForStatement();
                 case SyntaxKind.WhileKeyword:
                     return ParseWhileStatement();
                 default:
@@ -124,6 +126,18 @@ namespace CMM.CodeAnalysis.Syntax
             var statement = ParseStatement();
             var elseClause = ParseElseClause();
             return new IfStatementSyntax(keyword, condition, statement, elseClause);
+        }
+
+        private StatementSyntax ParseForStatement()
+        {
+            var keyword = MatchToken(SyntaxKind.ForKeyword);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var equalToken = MatchToken(SyntaxKind.EqualToken);
+            var lowerBound = ParseExpression();
+            var toKeyword = MatchToken(SyntaxKind.ToKeyword);
+            var upperBound = ParseExpression();
+            var body = ParseStatement();
+            return new ForStatementSyntax(keyword, identifier, equalToken, lowerBound, toKeyword, upperBound, body);
         }
 
         private StatementSyntax ParseWhileStatement()

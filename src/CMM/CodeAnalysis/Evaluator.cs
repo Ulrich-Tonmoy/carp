@@ -34,7 +34,10 @@ namespace CMM.CodeAnalysis
                 case BoundNodeKind.IfStatement:
                     EvaluateIfStatement((BoundIfStatement)node);
                     break;
-                case BoundNodeKind.WhileStatment:
+                case BoundNodeKind.ForStatement:
+                    EvaluateForStatement((BoundForStatement)node);
+                    break;
+                case BoundNodeKind.WhileStatement:
                     EvaluateWhileStatement((BoundWhileStatement)node);
                     break;
                 case BoundNodeKind.ExpressionStatement:
@@ -65,6 +68,18 @@ namespace CMM.CodeAnalysis
                 EvaluateStatement(node.ThenStatement);
             else if (node.ElseStatement != null)
                 EvaluateStatement(node.ElseStatement);
+        }
+
+        private void EvaluateForStatement(BoundForStatement node)
+        {
+            var lowerBound = (int)EvaluateExpression(node.LowerBound);
+            var upperBound = (int)EvaluateExpression(node.UpperBound);
+
+            for (var i = lowerBound; i <= upperBound; i++)
+            {
+                _variables[node.Variable] = i;
+                EvaluateStatement(node.Body);
+            }
         }
 
         private void EvaluateWhileStatement(BoundWhileStatement node)

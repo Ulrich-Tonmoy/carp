@@ -35,6 +35,8 @@
         ConstKeyword,
         VarKeyword,
         LetKeyword,
+        ForKeyword,
+        ToKeyword,
         WhileKeyword,
 
         // Nodes
@@ -46,6 +48,7 @@
         VariableDeclaration,
         ExpressionStatement,
         IfStatement,
+        ForStatement,
         WhileStatement,
 
         // Expressions

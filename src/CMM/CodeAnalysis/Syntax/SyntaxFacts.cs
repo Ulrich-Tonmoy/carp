@@ -84,6 +84,10 @@
                     return SyntaxKind.VarKeyword;
                 case "let":
                     return SyntaxKind.LetKeyword;
+                case "for":
+                    return SyntaxKind.ForKeyword;
+                case "to":
+                    return SyntaxKind.ToKeyword;
                 case "while":
                     return SyntaxKind.WhileKeyword;
                 default:
@@ -145,6 +149,10 @@
                     return "var";
                 case SyntaxKind.LetKeyword:
                     return "let";
+                case SyntaxKind.ForKeyword:
+                    return "for";
+                case SyntaxKind.ToKeyword:
+                    return "to";
                 case SyntaxKind.WhileKeyword:
                     return "while";
                 default:
