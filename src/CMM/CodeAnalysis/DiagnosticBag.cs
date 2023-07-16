@@ -37,7 +37,7 @@ namespace CMM.CodeAnalysis
 
         public void ReportUnexpectedToken(TextSpan span, SyntaxKind originalKind, SyntaxKind expectedKind)
         {
-            var message = $"token <{originalKind}>, expected <{expectedKind}>.";
+            var message = $"Unexpected token <{originalKind}>, expected <{expectedKind}>.";
             Report(span, message);
         }
 
