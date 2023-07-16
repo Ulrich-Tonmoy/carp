@@ -34,6 +34,8 @@
         FalseKeyword,
         ConstKeyword,
         VarKeyword,
+        LetKeyword,
+        WhileKeyword,
 
         // Nodes
         CompilationUnit,
@@ -44,6 +46,7 @@
         VariableDeclaration,
         ExpressionStatement,
         IfStatement,
+        WhileStatement,
 
         // Expressions
         LiteralExpression,

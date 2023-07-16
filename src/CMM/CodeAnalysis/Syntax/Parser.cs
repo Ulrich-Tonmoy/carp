@@ -77,9 +77,13 @@ namespace CMM.CodeAnalysis.Syntax
                     return ParseBlockStatement();
                 case SyntaxKind.ConstKeyword:
                 case SyntaxKind.VarKeyword:
-                    return ParseVariableDeclaration();
+                    return ParseVariableDeclaration(SyntaxKind.VarKeyword);
+                case SyntaxKind.LetKeyword:
+                    return ParseVariableDeclaration(SyntaxKind.LetKeyword);
                 case SyntaxKind.IfKeyword:
                     return ParseIfStatement();
+                case SyntaxKind.WhileKeyword:
+                    return ParseWhileStatement();
                 default:
                     return ParseExpressionStatement();
             }
@@ -103,9 +107,9 @@ namespace CMM.CodeAnalysis.Syntax
             return new BlockStatementSyntax(openBraceToken, statements.ToImmutable(), closeBraceToken);
         }
 
-        private StatementSyntax ParseVariableDeclaration()
+        private StatementSyntax ParseVariableDeclaration(SyntaxKind kind)
         {
-            var expected = Current.Kind == SyntaxKind.ConstKeyword ? SyntaxKind.ConstKeyword : SyntaxKind.VarKeyword;
+            var expected = Current.Kind == SyntaxKind.ConstKeyword ? SyntaxKind.ConstKeyword : kind;
             var keyword = MatchToken(expected);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
             var equals = MatchToken(SyntaxKind.EqualToken);
@@ -120,6 +124,14 @@ namespace CMM.CodeAnalysis.Syntax
             var statement = ParseStatement();
             var elseClause = ParseElseClause();
             return new IfStatementSyntax(keyword, condition, statement, elseClause);
+        }
+
+        private StatementSyntax ParseWhileStatement()
+        {
+            var keyword = MatchToken(SyntaxKind.WhileKeyword);
+            var condition = ParseExpression();
+            var body = ParseStatement();
+            return new WhileStatementSyntax(keyword, condition, body);
         }
 
         private ElseClauseSyntax ParseElseClause()

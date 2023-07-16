@@ -81,8 +81,11 @@
                 case "const":
                     return SyntaxKind.ConstKeyword;
                 case "var":
-                case "let":
                     return SyntaxKind.VarKeyword;
+                case "let":
+                    return SyntaxKind.LetKeyword;
+                case "while":
+                    return SyntaxKind.WhileKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -140,6 +143,10 @@
                     return "const";
                 case SyntaxKind.VarKeyword:
                     return "var";
+                case SyntaxKind.LetKeyword:
+                    return "let";
+                case SyntaxKind.WhileKeyword:
+                    return "while";
                 default:
                     return null;
             }
