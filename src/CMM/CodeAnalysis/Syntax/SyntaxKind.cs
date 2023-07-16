@@ -53,10 +53,10 @@
 
         // Expressions
         LiteralExpression,
+        NameExpression,
         UnaryExpression,
         BinaryExpression,
         ParenthesizedExpression,
-        NameExpression,
         AssignmentExpression,
     }
 }

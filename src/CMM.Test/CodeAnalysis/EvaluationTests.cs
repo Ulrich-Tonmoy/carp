@@ -70,64 +70,6 @@ namespace CMM.Test.CodeAnalysis
         }
 
         [Fact]
-        public void Evaluator_Name_Reports_Undefined()
-        {
-            var text = @"[x] * 10";
-
-            var diagnostics = @"
-                Variable 'x' doesn't exist.
-            ";
-
-            AssertDiagnostics(text, diagnostics);
-        }
-
-        [Fact]
-        public void Evaluator_Assigned_Reports_Undefined()
-        {
-            var text = @"[x] = 10";
-
-            var diagnostics = @"
-                Variable 'x' doesn't exist.
-            ";
-
-            AssertDiagnostics(text, diagnostics);
-        }
-
-        [Fact]
-        public void Evaluator_Assigned_Reports_CannotAssign()
-        {
-            var text = @"
-                {
-                    const x = 10
-                    x [=] 0
-                }
-            ";
-
-            var diagnostics = @"
-                Variable 'x' is readonly and cannot be reassigned.
-            ";
-
-            AssertDiagnostics(text, diagnostics);
-        }
-
-        [Fact]
-        public void Evaluator_Assigned_Reports_CannotConvert()
-        {
-            var text = @"
-                {
-                    var x = 10
-                    x = [true]
-                }
-            ";
-
-            var diagnostics = @"
-                Cannot convert type 'System.Boolean' to 'System.Int32'.
-            ";
-
-            AssertDiagnostics(text, diagnostics);
-        }
-
-        [Fact]
         public void Evaluator_IfStatement_Reports_CannotConvert()
         {
             var text = @"
@@ -200,7 +142,19 @@ namespace CMM.Test.CodeAnalysis
         }
 
         [Fact]
-        public void Evaluator_Unary_Reports_Undefined()
+        public void Evaluator_NameExpression_Reports_Undefined()
+        {
+            var text = @"[x] * 10";
+
+            var diagnostics = @"
+                Variable 'x' doesn't exist.
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
+        [Fact]
+        public void Evaluator_UnaryExpression_Reports_Undefined()
         {
             var text = @"[+] true";
 
@@ -212,12 +166,58 @@ namespace CMM.Test.CodeAnalysis
         }
 
         [Fact]
-        public void Evaluator_Binary_Reports_Undefined()
+        public void Evaluator_BinaryExpression_Reports_Undefined()
         {
             var text = @"10 [*] true";
 
             var diagnostics = @"
                 Binary operator '*' is not defined for types 'System.Int32' and 'System.Boolean'.
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
+        [Fact]
+        public void Evaluator_AssignmentExpression_Reports_Undefined()
+        {
+            var text = @"[x] = 10";
+
+            var diagnostics = @"
+                Variable 'x' doesn't exist.
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
+        [Fact]
+        public void Evaluator_AssignmentExpression_Reports_CannotAssign()
+        {
+            var text = @"
+                {
+                    const x = 10
+                    x [=] 0
+                }
+            ";
+
+            var diagnostics = @"
+                Variable 'x' is readonly and cannot be reassigned.
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
+        [Fact]
+        public void Evaluator_AssignmentExpression_Reports_CannotConvert()
+        {
+            var text = @"
+                {
+                    var x = 10
+                    x = [true]
+                }
+            ";
+
+            var diagnostics = @"
+                Cannot convert type 'System.Boolean' to 'System.Int32'.
             ";
 
             AssertDiagnostics(text, diagnostics);
