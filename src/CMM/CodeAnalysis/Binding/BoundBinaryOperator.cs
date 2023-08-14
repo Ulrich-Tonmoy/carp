@@ -27,6 +27,9 @@ namespace CMM.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.MinusToken,BoundBinaryOperatorKind.Subtraction,typeof(int)),
             new BoundBinaryOperator(SyntaxKind.StarToken,BoundBinaryOperatorKind.Multiplication,typeof(int)),
             new BoundBinaryOperator(SyntaxKind.SlashToken,BoundBinaryOperatorKind.Division,typeof(int)),
+            new BoundBinaryOperator(SyntaxKind.AndToken, BoundBinaryOperatorKind.BitwiseAnd, typeof(int)),
+            new BoundBinaryOperator(SyntaxKind.OrToken, BoundBinaryOperatorKind.BitwiseOr, typeof(int)),
+            new BoundBinaryOperator(SyntaxKind.HatToken, BoundBinaryOperatorKind.BitwiseXor, typeof(int)),
             new BoundBinaryOperator(SyntaxKind.EqualityToken,BoundBinaryOperatorKind.Equality,typeof(int),typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.NotEqualToken,BoundBinaryOperatorKind.NotEquals,typeof(int),typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.LessThanToken,BoundBinaryOperatorKind.Less,typeof(int),typeof(bool)),
@@ -34,8 +37,11 @@ namespace CMM.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.GreaterThanToken,BoundBinaryOperatorKind.Greater,typeof(int),typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.GreaterThanOrEqualToken,BoundBinaryOperatorKind.GreaterOrEqual,typeof(int),typeof(bool)),
 
-            new BoundBinaryOperator(SyntaxKind.AndToken,BoundBinaryOperatorKind.LogicalAnd,typeof(bool)),
-            new BoundBinaryOperator(SyntaxKind.OrToken,BoundBinaryOperatorKind.LogicalOr,typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.AndToken, BoundBinaryOperatorKind.BitwiseAnd, typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.AndAndToken,BoundBinaryOperatorKind.LogicalAnd,typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.OrToken, BoundBinaryOperatorKind.BitwiseOr, typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.OrOrToken,BoundBinaryOperatorKind.LogicalOr,typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.HatToken, BoundBinaryOperatorKind.BitwiseXor, typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.EqualityToken,BoundBinaryOperatorKind.Equality,typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.NotEqualToken,BoundBinaryOperatorKind.NotEquals,typeof(bool)),
         };

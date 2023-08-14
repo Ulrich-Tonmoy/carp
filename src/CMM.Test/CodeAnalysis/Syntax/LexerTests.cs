@@ -125,6 +125,10 @@ namespace CMM.Test.CodeAnalysis.Syntax
             if (t1Kind == SyntaxKind.LessThanToken && t2Kind == SyntaxKind.EqualityToken) return true;
             if (t1Kind == SyntaxKind.GreaterThanToken && t2Kind == SyntaxKind.EqualToken) return true;
             if (t1Kind == SyntaxKind.GreaterThanToken && t2Kind == SyntaxKind.EqualityToken) return true;
+            if (t1Kind == SyntaxKind.AndToken && t2Kind == SyntaxKind.AndToken) return true;
+            if (t1Kind == SyntaxKind.AndToken && t2Kind == SyntaxKind.AndAndToken) return true;
+            if (t1Kind == SyntaxKind.OrToken && t2Kind == SyntaxKind.OrToken) return true;
+            if (t1Kind == SyntaxKind.OrToken && t2Kind == SyntaxKind.OrOrToken) return true;
 
             return false;
         }

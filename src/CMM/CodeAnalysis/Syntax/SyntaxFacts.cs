@@ -9,6 +9,7 @@
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
                 case SyntaxKind.NotToken:
+                case SyntaxKind.TildeToken:
                     return 6;
 
                 default:
@@ -57,8 +58,11 @@
                     return 3;
 
                 case SyntaxKind.AndToken:
+                case SyntaxKind.AndAndToken:
                     return 2;
                 case SyntaxKind.OrToken:
+                case SyntaxKind.OrOrToken:
+                case SyntaxKind.HatToken:
                     return 1;
 
                 default:
@@ -111,6 +115,8 @@
                     return "!";
                 case SyntaxKind.EqualToken:
                     return "=";
+                case SyntaxKind.TildeToken:
+                    return "~";
                 case SyntaxKind.LessThanToken:
                     return "<";
                 case SyntaxKind.LessThanOrEqualToken:
@@ -120,9 +126,15 @@
                 case SyntaxKind.GreaterThanOrEqualToken:
                     return ">=";
                 case SyntaxKind.AndToken:
+                    return "&";
+                case SyntaxKind.AndAndToken:
                     return "&&";
                 case SyntaxKind.OrToken:
+                    return "|";
+                case SyntaxKind.OrOrToken:
                     return "||";
+                case SyntaxKind.HatToken:
+                    return "^";
                 case SyntaxKind.EqualityToken:
                     return "==";
                 case SyntaxKind.NotEqualToken:

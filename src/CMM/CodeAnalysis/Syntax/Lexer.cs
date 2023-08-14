@@ -75,18 +75,36 @@ namespace CMM.CodeAnalysis.Syntax
                     _kind = SyntaxKind.CloseBraceToken;
                     _position++;
                     break;
+                case '~':
+                    _kind = SyntaxKind.TildeToken;
+                    _position++;
+                    break;
+                case '^':
+                    _kind = SyntaxKind.HatToken;
+                    _position++;
+                    break;
                 case '&':
-                    if (Lookahead == '&')
+                    _position++;
+                    if (Current != '&')
                     {
                         _kind = SyntaxKind.AndToken;
-                        _position += 2;
+                    }
+                    else
+                    {
+                        _kind = SyntaxKind.AndAndToken;
+                        _position++;
                     }
                     break;
                 case '|':
-                    if (Lookahead == '|')
+                    _position++;
+                    if (Current != '|')
                     {
                         _kind = SyntaxKind.OrToken;
-                        _position += 2;
+                    }
+                    else
+                    {
+                        _kind = SyntaxKind.OrOrToken;
+                        _position++;
                     }
                     break;
                 case '=':
