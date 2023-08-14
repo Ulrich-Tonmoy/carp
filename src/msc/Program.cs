@@ -10,6 +10,7 @@ namespace msc
         private static void Main()
         {
             var showTree = false;
+            var showProgram = false;
             var variables = new Dictionary<VariableSymbol, object>();
             var textBuilder = new StringBuilder();
             Compilation previous = null;
@@ -38,6 +39,12 @@ namespace msc
                         Console.WriteLine(showTree ? "Showing parse trees." : "Not showing parse trees");
                         continue;
                     }
+                    else if (input == "#program")
+                    {
+                        showProgram = !showProgram;
+                        Console.WriteLine(showTree ? "Showing bound tree." : "Not showing bound tree.");
+                        continue;
+                    }
                     else if (input == "#clear")
                     {
                         Console.Clear();
@@ -62,11 +69,10 @@ namespace msc
                 var result = compilation.Evaluate(variables);
 
                 if (showTree)
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     syntaxTree.Root.WriteTo(Console.Out);
-                    Console.ResetColor();
-                }
+
+                if (showProgram)
+                    compilation.EmitTree(Console.Out);
 
                 if (!result.Diagnostics.Any())
                 {
