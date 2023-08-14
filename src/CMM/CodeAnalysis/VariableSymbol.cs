@@ -6,6 +6,8 @@
         public bool IsReadOnly { get; }
         public Type Type { get; }
 
+        public override string ToString() => Name;
+
         internal VariableSymbol(string name, bool isReadOnly, Type type)
         {
             Name = name;
