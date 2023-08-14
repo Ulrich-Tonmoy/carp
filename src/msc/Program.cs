@@ -42,7 +42,7 @@ namespace msc
                     else if (input == "#program")
                     {
                         showProgram = !showProgram;
-                        Console.WriteLine(showTree ? "Showing bound tree." : "Not showing bound tree.");
+                        Console.WriteLine(showProgram ? "Showing bound tree." : "Not showing bound tree.");
                         continue;
                     }
                     else if (input == "#clear")
