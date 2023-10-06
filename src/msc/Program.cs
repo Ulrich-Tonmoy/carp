@@ -1,6 +1,6 @@
-﻿using CMM.CodeAnalysis;
-using CMM.CodeAnalysis.Syntax;
-using CMM.CodeAnalysis.Text;
+﻿using Carp.CodeAnalysis;
+using Carp.CodeAnalysis.Syntax;
+using Carp.CodeAnalysis.Text;
 using System.Text;
 
 namespace msc
