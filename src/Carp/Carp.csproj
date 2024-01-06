@@ -5,6 +5,11 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
+		<ApplicationIcon>carp.ico</ApplicationIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="carp.ico" />
+	</ItemGroup>
 
 </Project>
