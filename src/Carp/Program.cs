@@ -3,7 +3,7 @@ using Carp.CodeAnalysis.Syntax;
 using Carp.CodeAnalysis.Text;
 using System.Text;
 
-namespace msc
+namespace Carp
 {
     internal static class Program
     {
