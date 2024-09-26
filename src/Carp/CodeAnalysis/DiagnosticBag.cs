@@ -35,6 +35,12 @@ namespace Carp.CodeAnalysis
             Report(span, message);
         }
 
+        public void ReportUnterminatedString(TextSpan span)
+        {
+            var message = "Unterminated string literal.";
+            Report(span, message);
+        }
+
         public void ReportUnexpectedToken(TextSpan span, SyntaxKind originalKind, SyntaxKind expectedKind)
         {
             var message = $"Unexpected token <{originalKind}>, expected <{expectedKind}>.";
