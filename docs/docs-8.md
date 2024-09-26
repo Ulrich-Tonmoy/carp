@@ -1,4 +1,4 @@
-# Episode 8
+# Docs 8
 
 [Previous](docs-7.md) |
 [Next](docs-9.md)
