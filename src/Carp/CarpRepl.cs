@@ -63,7 +63,15 @@ namespace Carp
         {
             if (string.IsNullOrEmpty(text)) return true;
 
+            var lastThreeLinesAreBlank = text.Split(Environment.NewLine)
+                               .Reverse()
+                               .TakeWhile(s => string.IsNullOrEmpty(s))
+                               .Take(3)
+                               .Count() == 3;
+            if (lastThreeLinesAreBlank) return true;
+
             var syntaxTree = SyntaxTree.Parse(text);
+
             if (syntaxTree.Root.Statement.GetLastToken().IsMissing) return false;
 
             return true;
