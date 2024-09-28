@@ -1,4 +1,4 @@
-﻿namespace Carp.CodeAnalysis
+﻿namespace Carp.CodeAnalysis.Symbols
 {
     public sealed class VariableSymbol
     {

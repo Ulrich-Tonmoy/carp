@@ -1,4 +1,5 @@
 ﻿using Carp.CodeAnalysis;
+using Carp.CodeAnalysis.Symbols;
 using Carp.CodeAnalysis.Syntax;
 
 namespace Carp.Test.CodeAnalysis

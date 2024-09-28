@@ -1,4 +1,5 @@
 ﻿using Carp.CodeAnalysis.Binding;
+using Carp.CodeAnalysis.Symbols;
 using Carp.CodeAnalysis.Syntax;
 using System.Collections.Immutable;
 
