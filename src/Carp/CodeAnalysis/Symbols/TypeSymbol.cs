@@ -2,9 +2,14 @@
 {
     public sealed class TypeSymbol : Symbol
     {
+        public static readonly TypeSymbol Int = new TypeSymbol("int");
+        public static readonly TypeSymbol Float = new TypeSymbol("float");
+        public static readonly TypeSymbol Bool = new TypeSymbol("bool");
+        public static readonly TypeSymbol String = new TypeSymbol("string");
+
         public override SymbolKind Kind => SymbolKind.Variable;
 
-        internal TypeSymbol(string name) : base(name)
+        private TypeSymbol(string name) : base(name)
         {
 
         }

@@ -4,10 +4,10 @@
     {
         public override SymbolKind Kind => SymbolKind.Variable;
         public bool IsReadOnly { get; }
-        public Type Type { get; }
+        public TypeSymbol Type { get; }
 
 
-        internal VariableSymbol(string name, bool isReadOnly, Type type) : base(name)
+        internal VariableSymbol(string name, bool isReadOnly, TypeSymbol type) : base(name)
         {
             IsReadOnly = isReadOnly;
             Type = type;
