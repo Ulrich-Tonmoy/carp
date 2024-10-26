@@ -227,6 +227,9 @@ namespace Carp.CodeAnalysis.Syntax
                 case SyntaxKind.NumberToken:
                     return ParseNumberLiteral();
 
+                case SyntaxKind.StringToken:
+                    return ParseStringLiteral();
+
                 case SyntaxKind.IdentifierToken:
                 default:
                     return ParseNameExpression();
@@ -253,6 +256,12 @@ namespace Carp.CodeAnalysis.Syntax
         {
             var numberToken = MatchToken(SyntaxKind.NumberToken);
             return new LiteralExpressionSyntax(numberToken);
+        }
+
+        private ExpressionSyntax ParseStringLiteral()
+        {
+            var stringToken = MatchToken(SyntaxKind.StringToken);
+            return new LiteralExpressionSyntax(stringToken);
         }
 
         private ExpressionSyntax ParseNameExpression()

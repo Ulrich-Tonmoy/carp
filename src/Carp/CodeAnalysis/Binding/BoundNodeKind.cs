@@ -19,5 +19,6 @@
         LiteralExpression,
         VariableExpression,
         AssignmentExpression,
+        ErrorExpression,
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Carp.CodeAnalysis.Binding
+﻿using Carp.CodeAnalysis.Symbols;
+
+namespace Carp.CodeAnalysis.Binding
 {
     internal sealed class BoundVariableDeclaration : BoundStatement
     {

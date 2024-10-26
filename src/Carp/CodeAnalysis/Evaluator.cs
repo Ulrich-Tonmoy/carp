@@ -1,4 +1,5 @@
 ﻿using Carp.CodeAnalysis.Binding;
+using Carp.CodeAnalysis.Symbols;
 
 namespace Carp.CodeAnalysis
 {
@@ -17,7 +18,7 @@ namespace Carp.CodeAnalysis
 
         public object Evaluate()
         {
-            var labelToIndex = new Dictionary<LabelSymbol, int>();
+            var labelToIndex = new Dictionary<BoundLabel, int>();
 
             for (var i = 0; i < _root.Statements.Length; i++)
             {
@@ -148,17 +149,17 @@ namespace Carp.CodeAnalysis
                 case BoundBinaryOperatorKind.Division:
                     return (int)left / (int)right;
                 case BoundBinaryOperatorKind.BitwiseAnd:
-                    if (b.Type == (typeof(int)))
+                    if (b.Type == TypeSymbol.Int)
                         return (int)left & (int)right;
                     else
                         return (bool)left & (bool)right;
                 case BoundBinaryOperatorKind.BitwiseOr:
-                    if (b.Type == (typeof(int)))
+                    if (b.Type == TypeSymbol.Int)
                         return (int)left | (int)right;
                     else
                         return (bool)left | (bool)right;
                 case BoundBinaryOperatorKind.BitwiseXor:
-                    if (b.Type == (typeof(int)))
+                    if (b.Type == TypeSymbol.Int)
                         return (int)left ^ (int)right;
                     else
                         return (bool)left ^ (bool)right;

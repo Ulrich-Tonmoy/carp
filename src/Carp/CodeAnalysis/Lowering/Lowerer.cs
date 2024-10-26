@@ -1,4 +1,5 @@
 ﻿using Carp.CodeAnalysis.Binding;
+using Carp.CodeAnalysis.Symbols;
 using Carp.CodeAnalysis.Syntax;
 using System.Collections.Immutable;
 
@@ -12,10 +13,10 @@ namespace Carp.CodeAnalysis.Lowering
         {
         }
 
-        private LabelSymbol GenerateLabel()
+        private BoundLabel GenerateLabel()
         {
             var name = $"Label{++_labelCount}";
-            return new LabelSymbol(name);
+            return new BoundLabel(name);
         }
 
         public static BoundBlockStatement Lower(BoundStatement statement)
@@ -108,11 +109,11 @@ namespace Carp.CodeAnalysis.Lowering
         {
             var variableDeclaration = new BoundVariableDeclaration(node.Variable, node.LowerBound);
             var variableExpression = new BoundVariableExpression(node.Variable);
-            var upperBoundSymbol = new VariableSymbol("upperBound", true, typeof(int));
+            var upperBoundSymbol = new VariableSymbol("upperBound", true, TypeSymbol.Int);
             var upperBoundDeclaration = new BoundVariableDeclaration(upperBoundSymbol, node.UpperBound);
             var condition = new BoundBinaryExpression(
                 variableExpression,
-                BoundBinaryOperator.Bind(SyntaxKind.LessThanOrEqualToken, typeof(int), typeof(int)),
+                BoundBinaryOperator.Bind(SyntaxKind.LessThanOrEqualToken, TypeSymbol.Int, TypeSymbol.Int),
                 new BoundVariableExpression(upperBoundSymbol)
             );
             var increment = new BoundExpressionStatement(
@@ -120,7 +121,7 @@ namespace Carp.CodeAnalysis.Lowering
                     node.Variable,
                     new BoundBinaryExpression(
                            variableExpression,
-                           BoundBinaryOperator.Bind(SyntaxKind.PlusToken, typeof(int), typeof(int)),
+                           BoundBinaryOperator.Bind(SyntaxKind.PlusToken, TypeSymbol.Int, TypeSymbol.Int),
                            new BoundLiteralExpression(1)
                     )
                 )
