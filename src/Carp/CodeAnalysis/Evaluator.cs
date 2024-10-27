@@ -7,6 +7,7 @@ namespace Carp.CodeAnalysis
     {
         private readonly BoundBlockStatement _root;
         private readonly Dictionary<VariableSymbol, object> _variables;
+        private Random _random;
 
         private object _lastValue;
 
@@ -200,6 +201,14 @@ namespace Carp.CodeAnalysis
                 var message = (string)EvaluateExpression(node.Args[0]);
                 Console.WriteLine(message);
                 return null;
+            }
+            else if (node.Function == BuiltinFunctions.Rand)
+            {
+                var max = (int)EvaluateExpression(node.Args[0]);
+                if (_random is null)
+                    _random = new Random();
+
+                return _random.Next(max);
             }
             else
             {
