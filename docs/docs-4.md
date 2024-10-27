@@ -1,4 +1,4 @@
-# Docs 4
+# Making testing a blast
 
 [Previous](docs-3.md) |
 [Next](docs-5.md)

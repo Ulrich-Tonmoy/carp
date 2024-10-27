@@ -1,4 +1,4 @@
-# Docs 2
+# More operators
 
 [Previous](docs-1.md) |
 [Next](docs-3.md)

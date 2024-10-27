@@ -1,4 +1,4 @@
-# Docs 3
+# Assignments & Variables
 
 [Previous](docs-2.md) |
 [Next](docs-4.md)

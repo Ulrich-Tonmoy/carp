@@ -1,4 +1,4 @@
-# Docs 5
+# Line numbers and clean-up
 
 [Previous](docs-4.md) |
 [Next](docs-6.md)
