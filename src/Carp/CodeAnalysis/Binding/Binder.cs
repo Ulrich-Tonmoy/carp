@@ -1,5 +1,6 @@
 ﻿using Carp.CodeAnalysis.Symbols;
 using Carp.CodeAnalysis.Syntax;
+using Carp.CodeAnalysis.Text;
 using System.Collections.Immutable;
 
 namespace Carp.CodeAnalysis.Binding
@@ -159,13 +160,7 @@ namespace Carp.CodeAnalysis.Binding
 
         private BoundExpression BindExpression(ExpressionSyntax syntax, TypeSymbol targetType)
         {
-            var result = BindExpression(syntax);
-            if (targetType != TypeSymbol.Error &&
-                result.Type != TypeSymbol.Error &&
-                result.Type != targetType)
-                _diagnostics.ReportCannotConvert(syntax.Span, result.Type, targetType);
-
-            return result;
+            return BindConversion(syntax, targetType);
         }
 
         private BoundExpression BindExpression(ExpressionSyntax syntax, bool canBeVoid = false)
@@ -240,13 +235,9 @@ namespace Carp.CodeAnalysis.Binding
             if (variable.IsReadOnly)
                 _diagnostics.ReportCannotAssign(syntax.EqualToken.Span, name);
 
-            if (boundExpression.Type != variable.Type)
-            {
-                _diagnostics.ReportCannotConvert(syntax.Expression.Span, boundExpression.Type, variable.Type);
-                return boundExpression;
-            }
+            var convertedExpression = BindConversion(syntax.Expression.Span, boundExpression, variable.Type);
 
-            return new BoundAssignmentExpression(variable, boundExpression);
+            return new BoundAssignmentExpression(variable, convertedExpression);
         }
 
         private BoundExpression BindUnaryExpression(UnaryExpressionSyntax syntax)
@@ -284,12 +275,12 @@ namespace Carp.CodeAnalysis.Binding
 
         private BoundExpression BindCallExpression(CallExpressionSyntax syntax)
         {
-            if (syntax.Args.Count == 1 && LookupType(syntax.Identifier.Text) is TypeSymbol type)
-                return BindConversion(type, syntax.Args[0]);
+            if (syntax.Arguments.Count == 1 && LookupType(syntax.Identifier.Text) is TypeSymbol type)
+                return BindConversion(syntax.Arguments[0], type);
 
             var boundArguments = ImmutableArray.CreateBuilder<BoundExpression>();
 
-            foreach (var argument in syntax.Args)
+            foreach (var argument in syntax.Arguments)
             {
                 var boundArgument = BindExpression(argument);
                 boundArguments.Add(boundArgument);
@@ -301,20 +292,20 @@ namespace Carp.CodeAnalysis.Binding
                 return new BoundErrorExpression();
             }
 
-            if (syntax.Args.Count != function.Parameters.Length)
+            if (syntax.Arguments.Count != function.Parameters.Length)
             {
-                _diagnostics.ReportWrongArgCount(syntax.Span, function.Name, function.Parameters.Length, syntax.Args.Count);
+                _diagnostics.ReportWrongArgCount(syntax.Span, function.Name, function.Parameters.Length, syntax.Arguments.Count);
                 return new BoundErrorExpression();
             }
 
-            for (int i = 0; i < syntax.Args.Count; i++)
+            for (int i = 0; i < syntax.Arguments.Count; i++)
             {
-                var arg = boundArguments[i];
-                var param = function.Parameters[i];
+                var argument = boundArguments[i];
+                var parameter = function.Parameters[i];
 
-                if (arg.Type != param.Type)
+                if (argument.Type != parameter.Type)
                 {
-                    _diagnostics.ReportWrongArgType(syntax.Span, param.Name, param.Type, arg.Type);
+                    _diagnostics.ReportWrongArgType(syntax.Span, parameter.Name, parameter.Type, argument.Type);
                     return new BoundErrorExpression();
                 }
             }
@@ -322,15 +313,26 @@ namespace Carp.CodeAnalysis.Binding
             return new BoundCallExpression(function, boundArguments.ToImmutable());
         }
 
-        private BoundExpression BindConversion(TypeSymbol type, ExpressionSyntax syntax)
+        private BoundExpression BindConversion(ExpressionSyntax syntax, TypeSymbol type)
         {
             var expression = BindExpression(syntax);
+            return BindConversion(syntax.Span, expression, type);
+        }
+
+        private BoundExpression BindConversion(TextSpan diagnosticSpan, BoundExpression expression, TypeSymbol type)
+        {
             var conversion = Conversion.Classify(expression.Type, type);
             if (!conversion.Exists)
             {
-                _diagnostics.ReportCannotConvert(syntax.Span, expression.Type, type);
+                if (expression.Type != TypeSymbol.Error && type != TypeSymbol.Error)
+                {
+                    _diagnostics.ReportCannotConvert(diagnosticSpan, expression.Type, type);
+                }
+
                 return new BoundErrorExpression();
             }
+
+            if (conversion.IsIdentity) return expression;
 
             return new BoundConversionExpression(type, expression);
         }

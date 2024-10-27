@@ -287,9 +287,9 @@ namespace Carp.CodeAnalysis.Syntax
         {
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
             var openParenthesisToken = MatchToken(SyntaxKind.OpenParenthesisToken);
-            var args = ParseArguments();
+            var arguments = ParseArguments();
             var closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
-            return new CallExpressionSyntax(identifier, openParenthesisToken, args, closeParenthesisToken);
+            return new CallExpressionSyntax(identifier, openParenthesisToken, arguments, closeParenthesisToken);
         }
 
         private SeparatedSyntaxList<ExpressionSyntax> ParseArguments()

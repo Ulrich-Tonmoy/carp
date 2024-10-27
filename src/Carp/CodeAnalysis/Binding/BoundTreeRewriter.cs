@@ -213,18 +213,18 @@ namespace Carp.CodeAnalysis.Binding
         {
             ImmutableArray<BoundExpression>.Builder builder = null;
 
-            for (var i = 0; i < node.Args.Length; i++)
+            for (var i = 0; i < node.Arguments.Length; i++)
             {
-                var oldArgument = node.Args[i];
+                var oldArgument = node.Arguments[i];
                 var newArgument = RewriteExpression(oldArgument);
                 if (newArgument != oldArgument)
                 {
                     if (builder == null)
                     {
-                        builder = ImmutableArray.CreateBuilder<BoundExpression>(node.Args.Length);
+                        builder = ImmutableArray.CreateBuilder<BoundExpression>(node.Arguments.Length);
 
                         for (var j = 0; j < i; j++)
-                            builder.Add(node.Args[j]);
+                            builder.Add(node.Arguments[j]);
                     }
                 }
 

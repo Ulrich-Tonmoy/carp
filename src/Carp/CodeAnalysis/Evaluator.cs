@@ -200,13 +200,13 @@ namespace Carp.CodeAnalysis
             }
             else if (node.Function == BuiltinFunctions.Print)
             {
-                var message = (string)EvaluateExpression(node.Args[0]);
+                var message = (string)EvaluateExpression(node.Arguments[0]);
                 Console.WriteLine(message);
                 return null;
             }
             else if (node.Function == BuiltinFunctions.Rand)
             {
-                var max = (int)EvaluateExpression(node.Args[0]);
+                var max = (int)EvaluateExpression(node.Arguments[0]);
                 if (_random is null)
                     _random = new Random();
 
