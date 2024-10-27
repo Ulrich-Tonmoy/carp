@@ -81,6 +81,8 @@ namespace Carp.CodeAnalysis.Binding
                     return BindForStatement((ForStatementSyntax)syntax);
                 case SyntaxKind.WhileStatement:
                     return BindWhileStatement((WhileStatementSyntax)syntax);
+                case SyntaxKind.DoWhileStatement:
+                    return BindDoWhileStatement((DoWhileStatementSyntax)syntax);
                 case SyntaxKind.ExpressionStatement:
                     return BindExpressionStatement((ExpressionStatementSyntax)syntax);
                 default:
@@ -140,6 +142,13 @@ namespace Carp.CodeAnalysis.Binding
             var condition = BindExpression(syntax.Condition, TypeSymbol.Bool);
             var body = BindStatement(syntax.Body);
             return new BoundWhileStatement(condition, body);
+        }
+
+        private BoundStatement BindDoWhileStatement(DoWhileStatementSyntax syntax)
+        {
+            var body = BindStatement(syntax.Body);
+            var condition = BindExpression(syntax.Condition, TypeSymbol.Bool);
+            return new BoundDoWhileStatement(body, condition);
         }
 
         private BoundStatement BindExpressionStatement(ExpressionStatementSyntax syntax)
@@ -292,16 +301,16 @@ namespace Carp.CodeAnalysis.Binding
                 return new BoundErrorExpression();
             }
 
-            if (syntax.Args.Count != function.Parameter.Length)
+            if (syntax.Args.Count != function.Parameters.Length)
             {
-                _diagnostics.ReportWrongArgCount(syntax.Span, function.Name, function.Parameter.Length, syntax.Args.Count);
+                _diagnostics.ReportWrongArgCount(syntax.Span, function.Name, function.Parameters.Length, syntax.Args.Count);
                 return new BoundErrorExpression();
             }
 
             for (int i = 0; i < syntax.Args.Count; i++)
             {
                 var arg = boundArguments[i];
-                var param = function.Parameter[i];
+                var param = function.Parameters[i];
 
                 if (arg.Type != param.Type)
                 {
@@ -333,7 +342,7 @@ namespace Carp.CodeAnalysis.Binding
             var variable = new VariableSymbol(name, isReadOnly, type);
 
             if (declare && !_scope.TryDeclareVariable(variable))
-                _diagnostics.ReportVariableAlreadyDeclared(identifier.Span, name);
+                _diagnostics.ReportSymbolAlreadyDeclared(identifier.Span, name);
 
             return variable;
         }

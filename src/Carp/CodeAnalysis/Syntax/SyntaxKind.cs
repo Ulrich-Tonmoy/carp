@@ -44,6 +44,7 @@
         ForKeyword,
         ToKeyword,
         WhileKeyword,
+        DoKeyword,
 
         // Nodes
         CompilationUnit,
@@ -56,6 +57,7 @@
         IfStatement,
         ForStatement,
         WhileStatement,
+        DoWhileStatement,
 
         // Expressions
         LiteralExpression,
