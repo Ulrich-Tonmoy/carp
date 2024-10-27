@@ -32,6 +32,7 @@
         GreaterThanToken,
         GreaterThanOrEqualToken,
         CommaToken,
+        ColonToken,
 
         //Keywords
         IfKeyword,
@@ -49,6 +50,7 @@
         // Nodes
         CompilationUnit,
         ElseClause,
+        TypeClause,
 
         // Statements
         BlockStatement,
