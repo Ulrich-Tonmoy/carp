@@ -31,6 +31,7 @@
         LessThanOrEqualToken,
         GreaterThanToken,
         GreaterThanOrEqualToken,
+        CommaToken,
 
         //Keywords
         IfKeyword,
@@ -63,5 +64,6 @@
         BinaryExpression,
         ParenthesizedExpression,
         AssignmentExpression,
+        CallExpression,
     }
 }

@@ -147,6 +147,8 @@
                     return "{";
                 case SyntaxKind.CloseBraceToken:
                     return "}";
+                case SyntaxKind.CommaToken:
+                    return ",";
                 case SyntaxKind.ElseKeyword:
                     return "else";
                 case SyntaxKind.IfKeyword:

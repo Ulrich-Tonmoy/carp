@@ -1,4 +1,5 @@
 ﻿using Carp.CodeAnalysis.Symbols;
+using static Carp.CodeAnalysis.Binding.BoundCallExpression;
 
 namespace Carp.CodeAnalysis.Binding
 {

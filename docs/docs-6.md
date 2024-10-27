@@ -1,4 +1,4 @@
-# Docs 6
+# Statements, Variables, and Scoping
 
 [Previous](docs-5.md) |
 [Next](docs-7.md)

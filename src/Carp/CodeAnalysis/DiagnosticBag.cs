@@ -2,6 +2,7 @@
 using Carp.CodeAnalysis.Syntax;
 using Carp.CodeAnalysis.Text;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace Carp.CodeAnalysis
 {
@@ -81,6 +82,30 @@ namespace Carp.CodeAnalysis
         public void ReportCannotAssign(TextSpan span, string name)
         {
             var message = $"Variable '{name}' is readonly and cannot be reassigned.";
+            Report(span, message);
+        }
+
+        public void ReportUndefinedFunction(TextSpan span, string name)
+        {
+            var message = $"Function '{name}' doesn't exist.";
+            Report(span, message);
+        }
+
+        public void ReportWrongArgCount(TextSpan span, string name, int expected, int given)
+        {
+            var message = $"Function '{name}' expect {expected} arguments but was given {given}.";
+            Report(span, message);
+        }
+
+        public void ReportWrongArgType(TextSpan span, string name, TypeSymbol expectedType, TypeSymbol actualType)
+        {
+            var message = $"Parameter '{name}' requires a value of type '{expectedType}' but was given a value of type '{actualType}'.";
+            Report(span, message);
+        }
+
+        public void ReportExpressionMustHaveValue(TextSpan span)
+        {
+            var message = "Expression must have a value.";
             Report(span, message);
         }
     }

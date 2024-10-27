@@ -1,4 +1,4 @@
-# Docs 10
+# Strings and Types
 
 [Previous](docs-9.md) |
 [Next](docs-11.md)

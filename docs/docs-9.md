@@ -1,4 +1,4 @@
-# Docs 9
+# A better REPL
 
 [Previous](docs-8.md) |
 [Next](docs-10.md)

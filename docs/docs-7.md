@@ -1,4 +1,4 @@
-# Docs 7
+# if-, while- and for-statements
 
 [Previous](docs-6.md) |
 [Next](docs-8.md)

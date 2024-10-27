@@ -1,4 +1,4 @@
-# Docs 1
+# A basic expression evaluator
 
 [Next](docs-2.md)
 
