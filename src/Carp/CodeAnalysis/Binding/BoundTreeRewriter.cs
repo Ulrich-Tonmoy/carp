@@ -16,6 +16,8 @@ namespace Carp.CodeAnalysis.Binding
                     return RewriteIfStatement((BoundIfStatement)node);
                 case BoundNodeKind.WhileStatement:
                     return RewriteWhileStatement((BoundWhileStatement)node);
+                case BoundNodeKind.DoWhileStatement:
+                    return RewriteDoWhileStatement((BoundDoWhileStatement)node);
                 case BoundNodeKind.ForStatement:
                     return RewriteForStatement((BoundForStatement)node);
                 case BoundNodeKind.LabelStatement:
@@ -88,6 +90,16 @@ namespace Carp.CodeAnalysis.Binding
                 return node;
 
             return new BoundWhileStatement(condition, body);
+        }
+
+        protected virtual BoundStatement RewriteDoWhileStatement(BoundDoWhileStatement node)
+        {
+            var body = RewriteStatement(node.Body);
+            var condition = RewriteExpression(node.Condition);
+            if (body == node.Body && condition == node.Condition)
+                return node;
+
+            return new BoundDoWhileStatement(body, condition);
         }
 
         protected virtual BoundStatement RewriteForStatement(BoundForStatement node)
@@ -201,18 +213,18 @@ namespace Carp.CodeAnalysis.Binding
         {
             ImmutableArray<BoundExpression>.Builder builder = null;
 
-            for (var i = 0; i < node.Args.Length; i++)
+            for (var i = 0; i < node.Arguments.Length; i++)
             {
-                var oldArgument = node.Args[i];
+                var oldArgument = node.Arguments[i];
                 var newArgument = RewriteExpression(oldArgument);
                 if (newArgument != oldArgument)
                 {
                     if (builder == null)
                     {
-                        builder = ImmutableArray.CreateBuilder<BoundExpression>(node.Args.Length);
+                        builder = ImmutableArray.CreateBuilder<BoundExpression>(node.Arguments.Length);
 
                         for (var j = 0; j < i; j++)
-                            builder.Add(node.Args[j]);
+                            builder.Add(node.Arguments[j]);
                     }
                 }
 

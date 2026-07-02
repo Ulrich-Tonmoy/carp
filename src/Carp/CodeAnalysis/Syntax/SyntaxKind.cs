@@ -32,6 +32,7 @@
         GreaterThanToken,
         GreaterThanOrEqualToken,
         CommaToken,
+        ColonToken,
 
         //Keywords
         IfKeyword,
@@ -44,10 +45,12 @@
         ForKeyword,
         ToKeyword,
         WhileKeyword,
+        DoKeyword,
 
         // Nodes
         CompilationUnit,
         ElseClause,
+        TypeClause,
 
         // Statements
         BlockStatement,
@@ -56,6 +59,7 @@
         IfStatement,
         ForStatement,
         WhileStatement,
+        DoWhileStatement,
 
         // Expressions
         LiteralExpression,

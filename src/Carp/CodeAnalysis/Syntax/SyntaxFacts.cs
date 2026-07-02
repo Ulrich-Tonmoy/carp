@@ -94,6 +94,8 @@
                     return SyntaxKind.ToKeyword;
                 case "while":
                     return SyntaxKind.WhileKeyword;
+                case "do":
+                    return SyntaxKind.DoKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -147,6 +149,8 @@
                     return "{";
                 case SyntaxKind.CloseBraceToken:
                     return "}";
+                case SyntaxKind.ColonToken:
+                    return ":";
                 case SyntaxKind.CommaToken:
                     return ",";
                 case SyntaxKind.ElseKeyword:
@@ -169,6 +173,8 @@
                     return "to";
                 case SyntaxKind.WhileKeyword:
                     return "while";
+                case SyntaxKind.DoKeyword:
+                    return "do";
                 default:
                     return null;
             }

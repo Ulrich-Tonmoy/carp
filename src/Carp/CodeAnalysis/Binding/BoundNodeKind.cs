@@ -12,6 +12,7 @@
         LabelStatement,
         GotoStatement,
         ConditionalGotoStatement,
+        DoWhileStatement,
 
         // Expressions
         BinaryExpression,

@@ -86,6 +86,8 @@ namespace Carp.CodeAnalysis.Syntax
                     return ParseForStatement();
                 case SyntaxKind.WhileKeyword:
                     return ParseWhileStatement();
+                case SyntaxKind.DoKeyword:
+                    return ParseDoWhileStatement();
                 default:
                     return ParseExpressionStatement();
             }
@@ -117,9 +119,25 @@ namespace Carp.CodeAnalysis.Syntax
             var expected = Current.Kind == SyntaxKind.ConstKeyword ? SyntaxKind.ConstKeyword : kind;
             var keyword = MatchToken(expected);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var typeClause = ParseOptionalTypeClause();
             var equals = MatchToken(SyntaxKind.EqualToken);
             var initializer = ParseExpression();
-            return new VariableDeclarationSyntax(keyword, identifier, equals, initializer);
+            return new VariableDeclarationSyntax(keyword, identifier, typeClause, equals, initializer);
+        }
+
+        private TypeClauseSyntax ParseOptionalTypeClause()
+        {
+            if (Current.Kind != SyntaxKind.ColonToken)
+                return null;
+
+            return ParseTypeClause();
+        }
+
+        private TypeClauseSyntax ParseTypeClause()
+        {
+            var colonToken = MatchToken(SyntaxKind.ColonToken);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            return new TypeClauseSyntax(colonToken, identifier);
         }
 
         private StatementSyntax ParseIfStatement()
@@ -149,6 +167,15 @@ namespace Carp.CodeAnalysis.Syntax
             var condition = ParseExpression();
             var body = ParseStatement();
             return new WhileStatementSyntax(keyword, condition, body);
+        }
+
+        private StatementSyntax ParseDoWhileStatement()
+        {
+            var doKeyword = MatchToken(SyntaxKind.DoKeyword);
+            var body = ParseStatement();
+            var whileKeyword = MatchToken(SyntaxKind.WhileKeyword);
+            var condition = ParseExpression();
+            return new DoWhileStatementSyntax(doKeyword, body, whileKeyword, condition);
         }
 
         private ElseClauseSyntax ParseElseClause()
@@ -276,9 +303,9 @@ namespace Carp.CodeAnalysis.Syntax
         {
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
             var openParenthesisToken = MatchToken(SyntaxKind.OpenParenthesisToken);
-            var args = ParseArguments();
+            var arguments = ParseArguments();
             var closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
-            return new CallExpressionSyntax(identifier, openParenthesisToken, args, closeParenthesisToken);
+            return new CallExpressionSyntax(identifier, openParenthesisToken, arguments, closeParenthesisToken);
         }
 
         private SeparatedSyntaxList<ExpressionSyntax> ParseArguments()
