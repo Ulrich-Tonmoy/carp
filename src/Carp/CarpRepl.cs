@@ -76,7 +76,7 @@ namespace Carp
 
             var syntaxTree = SyntaxTree.Parse(text);
 
-            if (syntaxTree.Root.Statement.GetLastToken().IsMissing) return false;
+            if (syntaxTree.Root.Members.Last().GetLastToken().IsMissing) return false;
 
             return true;
         }

@@ -1,6 +1,6 @@
 ﻿namespace Carp.CodeAnalysis.Symbols
 {
-    public sealed class ParameterSymbol : VariableSymbol
+    public sealed class ParameterSymbol : LocalVariableSymbol
     {
         public override SymbolKind Kind => SymbolKind.Parameter;
 

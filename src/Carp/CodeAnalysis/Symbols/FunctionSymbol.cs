@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using Carp.CodeAnalysis.Syntax;
+using System.Collections.Immutable;
 
 namespace Carp.CodeAnalysis.Symbols
 {
@@ -6,13 +7,15 @@ namespace Carp.CodeAnalysis.Symbols
     {
         public ImmutableArray<ParameterSymbol> Parameters { get; }
         public TypeSymbol Type { get; }
+        public FunctionDeclarationSyntax Declaration { get; }
 
         public override SymbolKind Kind => SymbolKind.Function;
 
-        public FunctionSymbol(string name, ImmutableArray<ParameterSymbol> parameters, TypeSymbol type) : base(name)
+        public FunctionSymbol(string name, ImmutableArray<ParameterSymbol> parameters, TypeSymbol type, FunctionDeclarationSyntax declaration = null) : base(name)
         {
             Parameters = parameters;
             Type = type;
+            Declaration = declaration;
         }
     }
 }

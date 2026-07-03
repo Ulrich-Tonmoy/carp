@@ -2,7 +2,6 @@
 using Carp.CodeAnalysis.Syntax;
 using Carp.CodeAnalysis.Text;
 using System.Collections;
-using System.Xml.Linq;
 
 namespace Carp.CodeAnalysis
 {
@@ -58,6 +57,12 @@ namespace Carp.CodeAnalysis
         public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, TypeSymbol leftType, TypeSymbol rightType)
         {
             var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'.";
+            Report(span, message);
+        }
+
+        public void ReportParameterAlreadyDeclared(TextSpan span, string parameterName)
+        {
+            var message = $"A parameter with name'{parameterName}' is already declared.";
             Report(span, message);
         }
 
@@ -118,6 +123,12 @@ namespace Carp.CodeAnalysis
         public void ReportExpressionMustHaveValue(TextSpan span)
         {
             var message = "Expression must have a value.";
+            Report(span, message);
+        }
+
+        public void XXX_ReportFunctionsAreUnsupported(TextSpan span)
+        {
+            var message = "Functions with return value unsupported.";
             Report(span, message);
         }
     }

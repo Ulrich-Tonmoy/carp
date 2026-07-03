@@ -46,11 +46,15 @@
         ToKeyword,
         WhileKeyword,
         DoKeyword,
+        FunctionKeyword,
 
         // Nodes
         CompilationUnit,
-        ElseClause,
+        GlobalStatement,
+        FunctionDeclaration,
+        Parameter,
         TypeClause,
+        ElseClause,
 
         // Statements
         BlockStatement,
